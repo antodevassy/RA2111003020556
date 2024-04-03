@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Average Calculator</h1>
+    <label for="numberType">Select Number Type:</label>
+    <select id="numberType">
+        <option value="primes">Prime</option>
+        <option value="fibo">Fibonacci</option>
+        <option value="even">Even</option>
+        <option value="rand">Random</option>
+    </select>
+    <button onclick="getNumbers()">Calculate Average</button>
+    <div id="response"></div>
+
+    <script>
+        function getNumbers() {
+            var numberType = document.getElementById("numberType").value;
+            $.get(`/numbers/${numberType}`, function(data, status){
+                var responseDiv = document.getElementById("response");
+                responseDiv.innerHTML = JSON.stringify(data, null, 2);
+            });
+        }
+    </script>
+</body>
+</html>
